@@ -10,9 +10,12 @@ def home_view(request):
 
     # from database?
     article_obj = Article.objects.get(id=random_id) # 1 to 4 id 
+    article_query = Article.objects.all()
 
+    # my_list = [123, 345, 566, 1112]
     # django tameplate
     context = {
+        'obj_list': article_query,
         'title': article_obj.title,
         'id': article_obj.id,
         'content': article_obj.content
