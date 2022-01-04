@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 
 
 # MTV System (model / template / view)
-def home_view(request):
+def home_view(request, id=None):
     random_id = random.randint(1, 4)
 
     # from database?
