@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 import random
 from articles.models import Article
+from django.template.loader import render_to_string
 
+
+# MTV System (model / template / view)
 def home_view(request):
     random_id = random.randint(1, 4)
 
@@ -14,9 +17,11 @@ def home_view(request):
         'id': article_obj.id,
         'content': article_obj.content
     }
-    HTML_STRING = """
-    <h1> {title} (id: {id}!)</h1>
-    <p>{content}</p>
-    """.format(**context) # more arg using (**keyword)
+
+    HTML_STRING = render_to_string('home-view.html', context=context)
+    # HTML_STRING = """
+    # <h1> {title} (id: {id}!)</h1>
+    # <p>{content}</p>
+    # """.format(**context) # more arg using (**keyword)
 
     return HttpResponse(HTML_STRING)
