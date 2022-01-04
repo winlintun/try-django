@@ -9,14 +9,14 @@ def home_view(request):
     article_obj = Article.objects.get(id=random_id) # 1 to 4 id 
 
     # django tameplate
-    H1_STRING = f"""
-    <h1> {article_obj.title} (id: {article_obj.id}!)
-    """
-
-    P_STRING = f"""
-    <p>{article_obj.content}</p>
-    """
-
-    HTML_STRING = H1_STRING + P_STRING
+    context = {
+        'title': article_obj.title,
+        'id': article_obj.id,
+        'content': article_obj.content
+    }
+    HTML_STRING = """
+    <h1> {title} (id: {id}!)</h1>
+    <p>{content}</p>
+    """.format(**context) # more arg using (**keyword)
 
     return HttpResponse(HTML_STRING)
